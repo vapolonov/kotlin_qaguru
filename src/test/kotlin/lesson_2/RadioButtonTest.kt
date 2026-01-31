@@ -21,19 +21,28 @@ class RadioButtonTest {
 
   @Test
   @DisplayName("Check radio buttons")
-  fun radioButtonShouldBeSelectable() {
+  fun radioButtonShouldNotBeSelectableInInitialState() {
     open("https://demoqa.com/radio-button")
     val formTitle = `$`("h1").text()
     formTitle shouldBe "Radio Button"
-
     radioYes.isSelected shouldBe false
     radioImpressive.isSelected shouldBe false
     radioNo.isEnabled shouldBe false
+  }
 
+  @Test
+  @DisplayName("Check Yes radio button")
+  fun radioButtonYesShouldBeSelectable() {
+    open("https://demoqa.com/radio-button")
     `$`("[for='yesRadio']").click()
     radioYes.isSelected shouldBe true
     radioText.text shouldBe "You have selected Yes"
+  }
 
+  @Test
+  @DisplayName("Check Impressive radio button")
+  fun radioButtonImpressiveShouldBeSelectable() {
+    open("https://demoqa.com/radio-button")
     `$`("[for='impressiveRadio']").click()
     radioImpressive.isSelected shouldBe true
     radioYes.isSelected shouldBe false
