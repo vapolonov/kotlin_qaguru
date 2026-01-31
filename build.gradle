@@ -32,11 +32,9 @@ test {
 }
 
 dependencies {
-  implementation (
-      "org.junit.jupiter:junit-jupiter:6.0.2",
-      "com.codeborne:selenide:7.14.0",
-      "io.kotest:kotest-assertions-core:6.1.1",
-      "io.qameta.allure:allure-junit5:2.32.0"
-  )
+  implementation "org.junit.jupiter:junit-jupiter:6.0.2"
+  implementation "com.codeborne:selenide:7.14.0"
+  implementation "io.kotest:kotest-assertions-core:6.1.1"
+  implementation "io.qameta.allure:allure-junit5:2.32.0"
   agent "org.aspectj:aspectjweaver:1.9.22"
 }

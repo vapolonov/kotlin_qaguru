@@ -1,6 +1,7 @@
 package lesson_2
 
-import com.codeborne.selenide.Selenide
+import com.codeborne.selenide.Selenide.`$`
+import com.codeborne.selenide.Selenide.open
 import io.kotest.matchers.shouldBe
 import io.qameta.allure.Feature
 import io.qameta.allure.Story
@@ -11,15 +12,14 @@ import org.junit.jupiter.api.Test
 
 @Feature("Practice form test")
 @Story("Form test")
-@Tag("SMOKE")
-@Tags(Tag("SMOKE"), Tag("SINGLE"))
+@Tags(Tag("FORM"), Tag("SMOKE"))
 class PracticeFormTest {
 
   @Test
   @DisplayName("Check form title")
   fun formShouldHaveTitle() {
-    Selenide.open("https://demoqa.com/automation-practice-form")
-    val formTitle = Selenide.`$`("h1").text()
+    open("https://demoqa.com/automation-practice-form")
+    val formTitle = `$`("h1").text()
     formTitle shouldBe "Practice Form"
   }
 }
