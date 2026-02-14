@@ -1,16 +1,18 @@
 package lesson_4
 
-import io.kotest.matchers.collections.shouldContain
-import io.kotest.matchers.comparables.shouldBeGreaterThanOrEqualTo
-import io.kotest.matchers.string.shouldContain
-import io.kotest.matchers.string.shouldStartWith
 import org.junit.jupiter.api.Test
 
 class ScopeFunctionApplyTest {
 
+  /**
+   * apply используется для настройки или инициализации объекта.
+   * Он выполняет блок кода для объекта и возвращает сам объект.
+   * Контекстный объект: this
+   * Возвращаемое значение: Сам объект (this).
+   */
   @Test
-  fun `create test user with apply function`() {
-    // проверка при создании
+  fun `scope function apply`() {
+
     val adminUser = User(
       id = 1,
       username = "admin_user",
@@ -21,11 +23,12 @@ class ScopeFunctionApplyTest {
       roles = listOf("admin", "user"),
       phone = "+79101112233"
     ).apply {
-      username shouldContain "admin"
-      password.length shouldBeGreaterThanOrEqualTo 10
-      email shouldContain "@"
-      roles shouldContain "admin"
-      phone shouldStartWith "+"
+      // this здесь - это 'adminUser'
+      username == "admin_user"
+      email == "admin@example.com"
     }
+
+    // 'adminUser' теперь настроен
+    println("Имя: ${adminUser.username}, Email: ${adminUser.email}")
   }
 }

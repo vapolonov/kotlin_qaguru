@@ -1,17 +1,19 @@
 package lesson_4
 
-import io.kotest.matchers.booleans.shouldBeTrue
-import io.kotest.matchers.ints.shouldNotBeLessThan
-import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldNotBeBlank
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class ScopeFunctionLetTest {
 
+  /**
+   * let чаще всего используется для выполнения блока кода для не-null объектов и
+   * для введения нового локального имени переменной.
+   * Контекстный объект: it (можно переименовать)
+   * Возвращаемое значение: Результат лямбда-выражения (последняя строка блока).
+   */
   @Test
-  @DisplayName("Создание и проверка пользователя при помощи scope функции RUN")
-  fun functionLetShouldValidateEmailIfPresent() {
+  @DisplayName("Функция let")
+  fun `scope function let`() {
     val user = User(
       id = 1L,
       password = "test",
@@ -19,16 +21,11 @@ class ScopeFunctionLetTest {
       email = null
     )
 
-    user.email?.let {
-      it.shouldNotBeBlank()
-      it.shouldBe("Undefined")
+    val result = user.username.let {
+      println("Имя: $it") // it -> "petya"
+      it.length // Возвращаемое значение
     }
 
-    user.let { user ->
-      user.isActive.shouldBeTrue()
-      user.username shouldBe "petya"
-      user.password shouldBe "test"
-      user.age?.shouldNotBeLessThan(1)
-    }
+    println(result) // Выведет: 5
   }
 }

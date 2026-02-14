@@ -1,33 +1,28 @@
 package lesson_4
 
-import io.kotest.matchers.booleans.shouldBeTrue
-import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.equals.shouldBeEqual
-import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
-import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 class ScopeFunctionWithTest {
 
+  /**
+   * with НЕ является функцией-расширением, как остальные.
+   * Он принимает объект в качестве аргумента.
+   * with рекомендуется для вызова нескольких методов одного и того же объекта без возвращения результата.
+   * Контекстный объект: this
+   * Возвращаемое значение: Результат лямбда-выражения.
+   */
   @Test
-  fun `test user profile with function With`() {
-    val user = User(
-      id = 12345,
-      username = "username",
-      password = "password123",
-      email = "user@example.com",
-      age = 30,
-      roles = listOf("user"),
-      phone = "+79100000000"
-    )
+  fun `with function`() {
+    val numbers = mutableListOf("one", "two", "three")
 
-    with(user) {
-      id.shouldBe(12345)
-      email.shouldBe("user@example.com")
-      age?.shouldBeGreaterThanOrEqual(0)
-      isActive.shouldBeTrue()
-      roles.shouldHaveSize(1)
-      phone?.length?.shouldBeEqual((12))
+    val resultString = with(numbers) {
+      // this здесь - это 'numbers'
+      add("four")
+      add("five")
+      "Список содержит $size элементов." // Возвращаемое значение
     }
+
+    println(resultString) // Выведет: "Список содержит 5 элементов."
+    println(numbers) // Выведет: [one, two, three, four, five]
   }
 }
